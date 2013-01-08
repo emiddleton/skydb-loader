@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.dirname(__FILE__)
+$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__)+'/../lib')
+
+require 'skydb-loader/cli/config'
+require 'skydb-loader/cli/loader'
+require 'skydb-loader/loader'
+
+begin
+  config = SkydbLoader::Cli::Config.get_config()
+  config.separator = "\t"
+  config.encloser = ''
+  config.folder = '<!- snowplow data directory ->'
+  config.table = 'events'
+  config.db = SkydbLoader::Db::DbConfig.new('localhost',8585,'<!- database directory ->')
+  
+  SkydbLoader::Cli::Loader.load(config)
+
+rescue SkydbLoader::Loader::LoadError => le
+  $stderr.puts(le.message)
+  exit 1
+rescue SkydbLoader::Cli::Config::ConfigError => e
+  $stderr.puts(e.message)
+  exit 1
+rescue SystemExit => e
+  exit 1
+rescue Exception => e
+  $stderr.puts("Unexpected error: " + e.message)
+  $stderr.puts(e.backtrace.join("\n"))
+  exit 1
+end
+
+exit 0

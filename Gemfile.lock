@@ -1,0 +1,17 @@
+GIT
+  remote: git://github.com/skydb/sky.rb.git
+  revision: 3d71297e87d647605c84490b73185d095a47e9f9
+  specs:
+    skydb (0.2.1)
+      msgpack (~> 0.4.7)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    msgpack (0.4.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  skydb!

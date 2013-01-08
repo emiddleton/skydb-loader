@@ -11,8 +11,10 @@ The module breakup and function signatures share a similar structure to [Infobri
 1. setup and start a skydb database.
 2. set snowplow data directory and database directory in bin/skydb-loader
 
-  config.folder to snowplow data director
-  config.db database directory
+```
+    config.folder to snowplow data director
+    config.db database directory
+```
 
 3. run bin/skydb-loader
 
